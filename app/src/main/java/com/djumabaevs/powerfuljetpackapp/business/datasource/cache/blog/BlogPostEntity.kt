@@ -3,6 +3,7 @@ package com.djumabaevs.powerfuljetpackapp.business.datasource.cache.blog
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.djumabaevs.powerfuljetpackapp.business.domain.models.BlogPost
 
 @Entity(tableName = "blog_post")
 data class BlogPostEntity(
@@ -30,7 +31,7 @@ data class BlogPostEntity(
     val username: String
 )
 
-fun BlogPostEntity.toBlogPost(): BlogPost{
+fun BlogPostEntity.toBlogPost(): BlogPost {
     return BlogPost(
         pk = pk,
         title = title,
