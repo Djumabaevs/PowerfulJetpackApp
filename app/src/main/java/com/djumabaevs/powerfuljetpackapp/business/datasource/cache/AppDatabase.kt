@@ -6,6 +6,7 @@ import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.account.Accou
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.account.AccountEntity
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.auth.AuthTokenDao
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.auth.AuthTokenEntity
+import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.blog.BlogPostDao
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.blog.BlogPostEntity
 
 @Database(entities = [AuthTokenEntity::class, AccountEntity::class, BlogPostEntity::class], version = 1)
