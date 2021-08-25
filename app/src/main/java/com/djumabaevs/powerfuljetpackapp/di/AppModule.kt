@@ -2,6 +2,7 @@ package com.djumabaevs.powerfuljetpackapp.di
 
 import android.app.Application
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStore
+import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStoreManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,6 @@ object AppModule {
     fun provideDatastoreManager(
         application: Application
     ): AppDataStore {
-        return App
+        return AppDataStoreManager(application)
     }
 }
