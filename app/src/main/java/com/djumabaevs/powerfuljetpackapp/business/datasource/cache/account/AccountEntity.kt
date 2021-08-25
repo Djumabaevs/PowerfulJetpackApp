@@ -3,6 +3,7 @@ package com.djumabaevs.powerfuljetpackapp.business.datasource.cache.account
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.djumabaevs.powerfuljetpackapp.business.domain.models.Account
 
 @Entity(tableName = "account_properties")
 data class AccountEntity(
