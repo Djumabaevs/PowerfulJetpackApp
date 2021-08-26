@@ -8,3 +8,16 @@ data class Response(
     val uiComponentType: UIComponentType,
     val messageType: MessageType
 )
+
+sealed class UIComponentType{
+
+    class Toast: UIComponentType()
+
+    class Dialog: UIComponentType()
+
+    class AreYouSureDialog(
+        val callback: AreYouSureCallback
+    ): UIComponentType()
+
+    class None: UIComponentType()
+}
