@@ -66,4 +66,18 @@ object AppModule {
     fun provideAccountPropertiesDao(db: AppDatabase): AccountDao {
         return db.getAccountPropertiesDao()
     }
+
+    @Singleton
+    @Provides
+    fun provideOpenApiMainService(retrofitBuilder: Retrofit.Builder): OpenApiMainService {
+        return retrofitBuilder
+            .build()
+            .create(OpenApiMainService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBlogPostDao(db: AppDatabase): BlogPostDao {
+        return db.getBlogPostDao()
+    }
 }
