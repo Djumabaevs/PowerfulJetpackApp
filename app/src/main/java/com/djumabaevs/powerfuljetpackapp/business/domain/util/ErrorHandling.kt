@@ -57,9 +57,9 @@ class ErrorHandling{
 
 
         fun isNetworkError(msg: String): Boolean{
-            when{
-                msg.contains(UNABLE_TO_RESOLVE_HOST) -> return true
-                else-> return false
+            return when{
+                msg.contains(UNABLE_TO_RESOLVE_HOST) -> true
+                else-> false
             }
         }
 
