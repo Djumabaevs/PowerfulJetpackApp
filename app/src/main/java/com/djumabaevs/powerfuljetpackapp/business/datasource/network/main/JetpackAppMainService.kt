@@ -1,6 +1,7 @@
 package com.djumabaevs.powerfuljetpackapp.business.datasource.network.main
 
 import com.djumabaevs.powerfuljetpackapp.business.datasource.network.GenericResponse
+import com.djumabaevs.powerfuljetpackapp.business.datasource.network.main.responses.BlogCreateUpdateResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*

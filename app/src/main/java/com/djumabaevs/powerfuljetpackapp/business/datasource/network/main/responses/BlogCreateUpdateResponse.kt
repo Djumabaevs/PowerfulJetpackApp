@@ -1,10 +1,16 @@
-package com.djumabaevs.powerfuljetpackapp.business.datasource.network.main
+package com.djumabaevs.powerfuljetpackapp.business.datasource.network.main.responses
 
 import com.djumabaevs.powerfuljetpackapp.business.domain.models.BlogPost
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.DateUtils
 import com.google.gson.annotations.SerializedName
 
-class BlogPostDto(
+class BlogCreateUpdateResponse(
+
+    @SerializedName("response")
+    val response: String,
+
+    @SerializedName("error_message")
+    val errorMessage: String,
 
     @SerializedName("pk")
     val pk: Int,
@@ -27,10 +33,9 @@ class BlogPostDto(
     @SerializedName("username")
     val username: String
 
-
 )
 
-fun BlogPostDto.toBlogPost(): BlogPost {
+fun BlogCreateUpdateResponse.toBlogPost(): BlogPost {
     return BlogPost(
         pk = pk,
         title = title,
@@ -40,19 +45,6 @@ fun BlogPostDto.toBlogPost(): BlogPost {
         dateUpdated = DateUtils.convertServerStringDateToLong(
             date_updated
         ),
-        username = username
-    )
-}
-
-
-fun BlogPost.toDto(): BlogPostDto {
-    return BlogPostDto(
-        pk = pk,
-        title = title,
-        slug = slug,
-        body = body,
-        image = image,
-        date_updated = DateUtils.convertLongToStringDate(dateUpdated),
         username = username
     )
 }
