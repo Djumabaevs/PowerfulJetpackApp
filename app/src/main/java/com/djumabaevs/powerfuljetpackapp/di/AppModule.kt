@@ -6,8 +6,10 @@ import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.AppDatabase
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.AppDatabase.Companion.DATABASE_NAME
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.account.AccountDao
 import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.auth.AuthTokenDao
+import com.djumabaevs.powerfuljetpackapp.business.datasource.cache.blog.BlogPostDao
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStore
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStoreManager
+import com.djumabaevs.powerfuljetpackapp.business.datasource.network.main.JetpackAppMainService
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -69,10 +71,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideOpenApiMainService(retrofitBuilder: Retrofit.Builder): OpenApiMainService {
+    fun provideJetpackAppMainService(retrofitBuilder: Retrofit.Builder): JetpackAppMainService {
         return retrofitBuilder
             .build()
-            .create(OpenApiMainService::class.java)
+            .create(JetpackAppMainService::class.java)
     }
 
     @Singleton
