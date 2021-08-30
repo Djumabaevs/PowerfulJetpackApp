@@ -3,7 +3,10 @@ package com.djumabaevs.powerfuljetpackapp.presentation.session
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStore
+import com.djumabaevs.powerfuljetpackapp.business.domain.models.AuthToken
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.StateMessage
+import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Companion.RESPONSE_CHECK_PREVIOUS_AUTH_USER_DONE
+import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Companion.SUCCESS_LOGOUT
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.UIComponentType
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.doesMessageAlreadyExistInQueue
 import javax.inject.Inject
@@ -23,7 +26,7 @@ import kotlinx.coroutines.launch
 class SessionManager
 @Inject constructor(
     private val checkPreviousAuthUser: CheckPreviousAuthUser,
-    private val logout: Logout,
+    private val logout: Logou,
     private val appDataStoreManager: AppDataStore,
 ) {
     private val TAG: String = "AppDebug"
