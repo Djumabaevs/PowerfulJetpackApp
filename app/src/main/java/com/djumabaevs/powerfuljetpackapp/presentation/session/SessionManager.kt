@@ -5,6 +5,7 @@ import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataSt
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.djumabaevs.powerfuljetpackapp.presentation.session.SessionEvents.*
+import com.djumabaevs.powerfuljetpackapp.presentation.util.DataStoreKeys
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +32,26 @@ class SessionManager
         //Check if a user was authenticated in a previous session
 
         sessionScope.launch {
-            appDataStoreManager.readValue(DataStoreKe)
+            appDataStoreManager.readValue(DataStoreKeys.PREVIOUS_AUTH_USER)?.let { email ->
+                onTriggerEvent(SessionEvents.CheckPreviousAuthUser(email))
+            }?: onFinishCheckingPrevAuthUser()
+        }
+    }
+
+    fun onTriggerEvent(event: SessionEvents){
+        when(event){
+            is SessionEvents.Login -> {
+                login(event.authToken)
+            }
+            is SessionEvents.Logout -> {
+                logout()
+            }
+            is SessionEvents.CheckPreviousAuthUser -> {
+                checkPreviousAuthUser(email = event.email)
+            }
+            is SessionEvents.OnRemoveHeadFromQueue ->{
+                removeHeadFromQueue()
+            }
         }
     }
 }
