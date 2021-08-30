@@ -3,6 +3,9 @@ package com.djumabaevs.powerfuljetpackapp.presentation.session
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStore
+import com.djumabaevs.powerfuljetpackapp.business.domain.util.StateMessage
+import com.djumabaevs.powerfuljetpackapp.business.domain.util.UIComponentType
+import com.djumabaevs.powerfuljetpackapp.business.domain.util.doesMessageAlreadyExistInQueue
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.djumabaevs.powerfuljetpackapp.presentation.session.SessionEvents.*
@@ -64,6 +67,18 @@ class SessionManager
                 this.state.value = state.copy(queue = queue)
             }catch (e: Exception){
                 Log.d(TAG, "removeHeadFromQueue: Nothing to remove from DialogQueue")
+            }
+        }
+    }
+
+    private fun appendToMessageQueue(stateMessage: StateMessage){
+        state.value?.let { state ->
+            val queue = state.queue
+            if(!stateMessage.doesMessageAlreadyExistInQueue(queue = queue)){
+                if(!(stateMessage.response.uiComponentType is UIComponentType.None)){
+                    queue.add(stateMessage)
+                    this.state.value = state.copy(queue = queue)
+                }
             }
         }
     }
