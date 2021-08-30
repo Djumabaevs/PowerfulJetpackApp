@@ -9,6 +9,7 @@ import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Co
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Companion.SUCCESS_LOGOUT
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.UIComponentType
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.doesMessageAlreadyExistInQueue
+import com.djumabaevs.powerfuljetpackapp.business.interactors.session.Logout
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.djumabaevs.powerfuljetpackapp.presentation.session.SessionEvents.*
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 class SessionManager
 @Inject constructor(
     private val checkPreviousAuthUser: CheckPreviousAuthUser,
-    private val logout: Logou,
+    private val logout: Logout,
     private val appDataStoreManager: AppDataStore,
 ) {
     private val TAG: String = "AppDebug"
