@@ -1,5 +1,6 @@
 package com.djumabaevs.powerfuljetpackapp.presentation.session
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.djumabaevs.powerfuljetpackapp.business.datasource.datastore.AppDataStore
 import javax.inject.Inject
@@ -51,6 +52,18 @@ class SessionManager
             }
             is SessionEvents.OnRemoveHeadFromQueue ->{
                 removeHeadFromQueue()
+            }
+        }
+    }
+
+    private fun removeHeadFromQueue(){
+        state.value?.let { state ->
+            try {
+                val queue = state.queue
+                queue.remove() // can throw exception if empty
+                this.state.value = state.copy(queue = queue)
+            }catch (e: Exception){
+                Log.d(TAG, "removeHeadFromQueue: Nothing to remove from DialogQueue")
             }
         }
     }
