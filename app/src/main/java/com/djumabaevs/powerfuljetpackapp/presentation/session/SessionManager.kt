@@ -9,6 +9,7 @@ import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Co
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.SuccessHandling.Companion.SUCCESS_LOGOUT
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.UIComponentType
 import com.djumabaevs.powerfuljetpackapp.business.domain.util.doesMessageAlreadyExistInQueue
+import com.djumabaevs.powerfuljetpackapp.business.interactors.session.CheckPreviousAuthUser
 import com.djumabaevs.powerfuljetpackapp.business.interactors.session.Logout
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,6 +17,8 @@ import com.djumabaevs.powerfuljetpackapp.presentation.session.SessionEvents.*
 import com.djumabaevs.powerfuljetpackapp.presentation.util.DataStoreKeys
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 /**
@@ -125,6 +128,7 @@ class SessionManager
                         onFinishCheckingPrevAuthUser()
                     }
                 }
+
 
                 dataState.stateMessage?.let { stateMessage ->
                     appendToMessageQueue(stateMessage)
